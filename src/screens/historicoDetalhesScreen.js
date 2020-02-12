@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   ScrollView,
+  Image,
 } from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -31,7 +32,10 @@ class HistoricoDetalhesScreen extends Component {
         <View style={styles.outterViewStyle}>
           <View style={styles.flexInnerStyle}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-              <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+              <Image
+                source={require('../icons/blueBack.png')}
+                style={{height: 20, width: 20}}
+              />
             </TouchableOpacity>
           </View>
           <View

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
-import {EXTRA_LARGE, SMALL} from '../theme/font';
+import {EXTRA_LARGE, SMALL, MEDIUM} from '../theme/font';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 export default class CarComponent extends Component {
   render() {
@@ -20,12 +20,14 @@ export default class CarComponent extends Component {
             <Text
               style={{
                 color: WHITE,
-                fontSize: EXTRA_LARGE,
+                fontSize: 22,
                 fontWeight: 'bold',
               }}>
               Renault Kwid
             </Text>
-            <Text style={{color: WHITE}}>PXZ2451 | 198.000 km</Text>
+            <Text style={{color: WHITE, fontSize: 12.5}}>
+              PXZ2451 | 198.000 km
+            </Text>
           </View>
           <View style={styles.innerViewStyle}>
             <Text

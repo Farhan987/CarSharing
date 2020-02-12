@@ -40,20 +40,19 @@ export default class SearchGasStationScreen extends Component {
               onPress={() => this.toggle(false)}
               coordinate={{latitude: 37.78825, longitude: -122.4324}}
               title={'Gas Station 1'}
-              image={require('../icons/gas-pump.png')}
+              image={require('../icons/Vector.png')}
               description={'Gas Station 1 Description'}
             />
             <Marker
               onPress={() => this.toggle(false)}
               coordinate={{latitude: 37.7886, longitude: -122.436}}
               title={'Gas Station 2'}
-              image={require('../icons/gas-pump.png')}
+              image={require('../icons/Vector.png')}
               description={'Gas Station 2 Description'}
             />
-
             <Marker
               onPress={() => this.toggle(false)}
-              image={require('../icons/gas-pump.png')}
+              image={require('../icons/Vector.png')}
               coordinate={{latitude: 37.7899, longitude: -122.435}}
               title={'Gas Station 3'}
               description={'Gas Station 3 Description'}

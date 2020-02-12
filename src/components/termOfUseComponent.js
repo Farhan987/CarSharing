@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {Calendar} from 'react-native-calendars';
-import CustomButton from './customButton';
+import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {LIGHT_BlUE, DARK_BlUE, WHITE} from '../theme/colors';
-import {EXTRA_LARGE, LARGE, SMALL} from '../theme/font';
+import {LIGHT_BlUE, WHITE} from '../theme/colors';
+import {EXTRA_LARGE, SMALL} from '../theme/font';
 export default class TermOfUseComponent extends Component {
   state = {blueBg: false};
   toggleCheckBox = () => {
@@ -14,12 +12,16 @@ export default class TermOfUseComponent extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.crossButtonStyle}>
-          <TouchableOpacity onPress={this.props.setModalVisible}>
-            <Icon
+          <TouchableOpacity onPress={this.props.setModalVisible1}>
+            {/* <Icon
               name="times"
               size={25}
               color={'black'}
               style={{paddingLeft: 17}}
+            /> */}
+            <Image
+              source={require('../icons/crossBlack.png')}
+              style={{height: 25, width: 25, marginLeft: 10}}
             />
           </TouchableOpacity>
         </View>
@@ -56,7 +58,10 @@ export default class TermOfUseComponent extends Component {
           <View style={[styles.checkViewStyle, {flex: 1}]}>
             <TouchableOpacity
               style={styles.boxStyle}
-              onPress={() => this.toggleCheckBox()}>
+              onPress={() => {
+                this.toggleCheckBox();
+                this.props.setModalVisible1();
+              }}>
               <Icon
                 name="check"
                 size={15}
@@ -65,7 +70,7 @@ export default class TermOfUseComponent extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.checkViewStyle}>
-            <TouchableOpacity onPress={this.props.setModalVisible}>
+            <View>
               <Text
                 style={{
                   fontSize: SMALL,
@@ -74,7 +79,7 @@ export default class TermOfUseComponent extends Component {
                 }}>
                 I accept the term of use
               </Text>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

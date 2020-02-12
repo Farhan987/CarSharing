@@ -18,7 +18,10 @@ export default class CustomHeader extends Component {
         <View style={styles.headerMainViewStyle}>
           <View style={styles.headerInnerViewStyle}>
             <TouchableOpacity onPress={this.props.onPressMenu}>
-              <Icon name="bars" size={20} color={WHITE} />
+              <Image
+                source={require('../icons/menu.png')}
+                style={{height: 20, width: 20}}
+              />
             </TouchableOpacity>
           </View>
           <View style={[styles.headerInnerViewStyle, {flex: 4}]}>
@@ -26,16 +29,25 @@ export default class CustomHeader extends Component {
               Car Sharing
             </Text>
           </View>
-          <View style={styles.headerInnerViewStyle}>
-            <TouchableOpacity onPress={this.props.onPressAlert}>
-              <Icon name="bell-o" size={20} color={WHITE} />
-            </TouchableOpacity>
-          </View>
+
+          {this.props.alertClose ? (
+            false
+          ) : (
+            <View style={styles.headerInnerViewStyle}>
+              <TouchableOpacity onPress={this.props.onPressAlert}>
+                <Image
+                  source={require('../icons/notificationWhite.png')}
+                  style={{height: 20, width: 20}}
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+
           <View style={styles.headerInnerViewStyle}>
             <TouchableOpacity onPress={this.props.onPressProfile}>
               <Image
                 source={require('../Logo/profile.jpg')}
-                style={{height: 35, width: 35, borderRadius: 50}}
+                style={{height: 25, width: 25, borderRadius: 50}}
               />
             </TouchableOpacity>
           </View>

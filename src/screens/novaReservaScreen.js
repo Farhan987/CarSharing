@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   Text,
   Modal,
-  Alert,
+  Picker,
+  Image,
 } from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import CustomButton from '../components/customButton';
@@ -49,7 +50,10 @@ class NovaReservaScreen extends Component {
           <View style={styles.outterViewStyle}>
             <View style={styles.flexInnerStyle}>
               <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+                <Image
+                  source={require('../icons/blueBack.png')}
+                  style={{height: 20, width: 20}}
+                />
               </TouchableOpacity>
             </View>
             <View
@@ -88,19 +92,40 @@ class NovaReservaScreen extends Component {
               },
             ]}>
             {/* <CustomField placeholder={'Critical Route'} /> */}
-            <Dropdown
-              selectedItemColor={'green'}
+            {/* <Dropdown
+              selectedItemColor={LIGHT_BlUE}
+              dropdownPosition={-4}
               baseColor={'#f5f5f5'}
               label="Selected Option"
               data={data}
+              icon={<Icon name="long-arrow-left" color="blue" />}
               style={{
                 width: '100%',
                 color: LIGHT_BlUE,
                 paddingLeft: 5,
                 paddingBottom: 5,
-                // backgroundColor: 'blue',
               }}
-            />
+            /> */}
+            <Picker
+              supportedOrientations={['portrait', 'landscape']}
+              mode="dropdown"
+              selectedValue={this.state.language}
+              style={{
+                height: 50,
+                width: '100%',
+                color: LIGHT_BlUE,
+              }}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({language: itemValue})
+              }>
+              <Picker.Item
+                style={{color: 'green'}}
+                label="Select Option"
+                value="select"
+              />
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
           </View>
           <View style={[styles.outterViewStyle, {height: 40}]}>
             <View style={styles.flexInnerStyle}>
@@ -177,6 +202,7 @@ export default NovaReservaScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#ffffff',
   },
   firstFlexStyle: {
     height: 350,

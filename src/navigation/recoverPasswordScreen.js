@@ -4,6 +4,7 @@ import {
   View,
   ImageBackground,
   Text,
+  Image,
   TouchableOpacity,
 } from 'react-native';
 import {WHITE} from '../theme/colors';
@@ -14,18 +15,22 @@ class RecoverPasswordScreen extends Component {
   render() {
     return (
       <ImageBackground
-        resizeMode={'stretch'}
         source={require('../Logo/bgImagee.jpg')}
         style={styles.container}>
         {/* firstFlex */}
         <View style={styles.firstFlexStyle}>
           <View style={styles.backButtonStyle}>
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-              <Icon
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('LoginScreen')}>
+              {/* <Icon
                 name="long-arrow-left"
                 size={20}
                 color={WHITE}
                 style={{paddingLeft: 20}}
+              /> */}
+              <Image
+                source={require('../icons/whiteBack.png')}
+                style={{height: 20, width: 20, marginLeft: 15}}
               />
             </TouchableOpacity>
           </View>
@@ -35,8 +40,10 @@ class RecoverPasswordScreen extends Component {
         <View style={styles.secondFlexStyle}>
           <View style={{height: 15}} />
           <CustomTextInput
-            iconName={'envelope'}
+            source={require('../icons/email.png')}
             placeholder={'Enter Your Email'}
+            textColor={WHITE}
+            phColor={WHITE}
           />
 
           <View style={{height: 30}} />
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
   },
   backButtonStyle: {
     height: 60,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'flex-start',
   },
 

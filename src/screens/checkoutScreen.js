@@ -7,6 +7,7 @@ import {
   Image,
   Modal,
   Alert,
+  ImageBackground,
 } from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,11 +17,6 @@ import CustomField from '../components/customField';
 import CustomButton from '../components/customButton';
 import CheckOutRealizedModal from '../components/modalComponents/checkOutRealizedComponent';
 class CheckoutScreen extends Component {
-  state = {modalVisible: false};
-
-  setModalVisible() {
-    this.setState({modalVisible: !this.state.modalVisible});
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -36,7 +32,10 @@ class CheckoutScreen extends Component {
           <View style={styles.outterViewStyle}>
             <View style={styles.flexInnerStyle}>
               <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+                <Image
+                  source={require('../icons/blueBack.png')}
+                  style={{height: 20, width: 20}}
+                />
               </TouchableOpacity>
             </View>
             <View
@@ -55,45 +54,78 @@ class CheckoutScreen extends Component {
           {/* imagePickers */}
           <View
             style={{
-              flex: 2,
+              flex: 1.5,
               width: '90%',
               alignSelf: 'center',
               flexDirection: 'row',
             }}>
             <View style={styles.flexeStyle}>
-              <TouchableOpacity style={styles.touchableStyle}>
-                <Image
-                  style={{height: '100%', width: '100%', borderRadius: 3}}
-                />
+              <TouchableOpacity>
+                <ImageBackground
+                  source={require('../icons/square.png')}
+                  style={styles.imageBgStyle}>
+                  <Image
+                    source={require('../icons/plus.png')}
+                    style={styles.plusSize}
+                  />
+                </ImageBackground>
               </TouchableOpacity>
             </View>
             <View style={[styles.flexeStyle, {alignItems: 'center'}]}>
-              <TouchableOpacity style={styles.touchableStyle}>
-                <Image style={{height: 45, width: 45, borderRadius: 3}} />
+              <TouchableOpacity>
+                <ImageBackground
+                  source={require('../icons/square.png')}
+                  style={styles.imageBgStyle}>
+                  <Image
+                    source={require('../icons/plus.png')}
+                    style={styles.plusSize}
+                  />
+                </ImageBackground>
               </TouchableOpacity>
             </View>
             <View style={[styles.flexeStyle, {alignItems: 'flex-end'}]}>
-              <TouchableOpacity style={styles.touchableStyle}>
-                <Image style={{height: 45, width: 45, borderRadius: 3}} />
+              <TouchableOpacity>
+                <ImageBackground
+                  source={require('../icons/square.png')}
+                  style={styles.imageBgStyle}>
+                  <Image
+                    source={require('../icons/plus.png')}
+                    style={styles.plusSize}
+                  />
+                </ImageBackground>
               </TouchableOpacity>
             </View>
           </View>
           <View style={{height: 10}} />
           <View
             style={{
-              height: 50,
+              flex: 1.5,
               width: '90%',
               alignSelf: 'center',
               flexDirection: 'row',
             }}>
             <View style={styles.flexeStyle}>
-              <TouchableOpacity style={styles.touchableStyle}>
-                <Image style={{height: 45, width: 45, borderRadius: 3}} />
+              <TouchableOpacity>
+                <ImageBackground
+                  source={require('../icons/square.png')}
+                  style={styles.imageBgStyle}>
+                  <Image
+                    source={require('../icons/plus.png')}
+                    style={styles.plusSize}
+                  />
+                </ImageBackground>
               </TouchableOpacity>
             </View>
             <View style={[styles.flexeStyle, {alignItems: 'center'}]}>
-              <TouchableOpacity style={styles.touchableStyle}>
-                <Image style={{height: 45, width: 45, borderRadius: 3}} />
+              <TouchableOpacity>
+                <ImageBackground
+                  source={require('../icons/square.png')}
+                  style={styles.imageBgStyle}>
+                  <Image
+                    source={require('../icons/plus.png')}
+                    style={styles.plusSize}
+                  />
+                </ImageBackground>
               </TouchableOpacity>
             </View>
             <View style={{flex: 1}} />
@@ -111,20 +143,22 @@ class CheckoutScreen extends Component {
         <View
           style={{
             flex: 1,
-            justifyContent: 'center',
+            justifyContent: 'flex-end',
             alignItems: 'center',
+            paddingBottom: 40,
           }}>
           <CustomButton
-            onPress={() => this.setModalVisible(true)}
+            // onPress={() => this.setModalVisible(true)}
+            onPress={() => this.props.navigation.navigate('EstrelasScreen')}
             buttonWidth={'60%'}
             buttonText={'Next'}
             btnBackgroundColor={LIGHT_BlUE}
             btnTextColor={WHITE}
           />
 
-          <Modal
-            animationType="slide"
-            transparent={false}
+          {/* <Modal
+            animationType="fade"
+            transparent={true}
             presentationStyle="fullScreen"
             visible={this.state.modalVisible}
             onRequestClose={() => {
@@ -134,7 +168,7 @@ class CheckoutScreen extends Component {
               setModalVisible={() => this.setModalVisible()}
               navigation={this.props.navigation}
             />
-          </Modal>
+          </Modal> */}
         </View>
       </View>
     );
@@ -146,8 +180,7 @@ export default CheckoutScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    backgroundColor: WHITE,
   },
   firstFlexStyle: {
     flex: 2,
@@ -194,4 +227,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  imageBgStyle: {
+    height: '99%',
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  plusSize: {height: 28, width: 28},
 });

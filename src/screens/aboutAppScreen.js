@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity, Image, Text} from 'react-native';
 import {LIGHT_BlUE} from '../theme/colors';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {EXTRA_LARGE, MEDIUM} from '../theme/font';
 import CustomHeader from '../components/customHeader';
 class AboutAppScreen extends Component {
@@ -19,7 +18,10 @@ class AboutAppScreen extends Component {
         <View style={styles.outterViewStyle}>
           <View style={styles.flexInnerStyle}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-              <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+              <Image
+                source={require('../icons/blueBack.png')}
+                style={{height: 20, width: 20}}
+              />
             </TouchableOpacity>
           </View>
           <View
@@ -96,8 +98,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageStyle: {
-    width: 150,
-    height: 160,
+    width: 220,
+    height: 230,
     alignSelf: 'center',
   },
   secondFlexStyle: {

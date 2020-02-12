@@ -23,9 +23,9 @@ export default class FirstGasStationComponent extends Component {
           </View>
           <View style={{flex: 2}}>
             <CustomButton
-              onPress={() =>
-                this.props.navigation.navigate('NovaReservaScreen')
-              }
+              // onPress={() =>
+              //   this.props.navigation.navigate('NovaReservaScreen')
+              // }
               buttonWidth={'60%'}
               buttonText={'Search'}
               btnBackgroundColor={LIGHT_BlUE}

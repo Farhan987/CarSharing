@@ -7,9 +7,9 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {DARK_BlUE, WHITE, LIGHT_BlUE} from '../theme/colors';
 import {MEDIUM} from '../theme/font';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import DrawerComponent from '../components/drawerComponent';
 export default class DrawerScreen extends Component {
   render() {
@@ -21,7 +21,10 @@ export default class DrawerScreen extends Component {
             <View style={styles.topButtonInnerViewStyle}>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('LoginScreen')}>
-                <Image source={require('../icons/exitIcon.png')} />
+                <Image
+                  source={require('../icons/exit.png')}
+                  style={{height: 20, width: 20}}
+                />
                 {/* <Icon name="sign-out" size={20} color={WHITE} /> */}
               </TouchableOpacity>
             </View>
@@ -50,7 +53,10 @@ export default class DrawerScreen extends Component {
               onPress={() =>
                 this.props.navigation.navigate('EditProfileScreen')
               }>
-              <Icon name="pencil" size={20} color={LIGHT_BlUE} />
+              <Image
+                source={require('../icons/editBlue.png')}
+                style={{height: 20, width: 20}}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -72,15 +78,16 @@ export default class DrawerScreen extends Component {
         <ScrollView>
           <DrawerComponent
             showImage={true}
-            imagePath={require('../icons/newBookingIcon.png')}
+            source={require('../icons/newBooking.png')}
             iconText={'New'}
-            onPressDrawerComponent={() =>
-              this.props.navigation.navigate('FazerReservaScreen')
-            }
+            onPressDrawerComponent={() => {
+              this.props.navigation.navigate('FazerReservaScreen');
+              this.props.navigation.closeDrawer();
+            }}
           />
           <DrawerComponent
             showImage={true}
-            imagePath={require('../icons/carIcon.png')}
+            source={require('../icons/car.png')}
             iconName={'car'}
             iconText={'My Reservation'}
             onPressDrawerComponent={() =>
@@ -88,14 +95,16 @@ export default class DrawerScreen extends Component {
             }
           />
           <DrawerComponent
-            iconName={'history'}
+            showImage={true}
+            source={require('../icons/history.png')}
             iconText={'Historic'}
             onPressDrawerComponent={() =>
               this.props.navigation.navigate('HistoricScreen')
             }
           />
           <DrawerComponent
-            iconName={'bell-o'}
+            showImage={true}
+            source={require('../icons/notification.png')}
             iconText={'Alerts'}
             onPressDrawerComponent={() =>
               this.props.navigation.navigate('AlertScreen')
@@ -106,7 +115,7 @@ export default class DrawerScreen extends Component {
               this.props.navigation.navigate('SearchGasStationScree')
             }
             showImage={true}
-            imagePath={require('../icons/gaspumpIcon.png')}
+            source={require('../icons/fuelPump.png')}
             iconName={'institution'}
             iconText={'Gas Station Near'}
           />
@@ -115,7 +124,7 @@ export default class DrawerScreen extends Component {
               this.props.navigation.navigate('AboutAppScreen')
             }
             showImage={true}
-            imagePath={require('../icons/aboutUs.png')}
+            source={require('../icons/info.png')}
             iconName={'info-circle'}
             iconText={'About the Help'}
           />

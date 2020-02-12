@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {View, ImageBackground, Image, Text} from 'react-native';
-import {WHITE} from '../theme/colors';
+import {View, ImageBackground, Image} from 'react-native';
 class SplashScreen extends Component {
   componentDidMount() {
-    setTimeout(() => this.props.navigation.navigate('LoginScreen'), 3000);
+    // setTimeout(() => this.props.navigation.navigate('LoginScreen'), 5000);
+    this.props.navigation.navigate('LoginScreen');
   }
 
   render() {

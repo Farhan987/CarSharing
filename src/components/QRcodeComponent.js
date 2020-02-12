@@ -13,9 +13,9 @@ import {LARGE} from '../theme/font';
 export default class QRCodeComponent extends Component {
   componentDidMount() {
     setTimeout(() => {
-      this.props.navigation.navigate('MyReservationSecondScreen'), 1500;
-      this.props.setModalVisible;
-    });
+      this.props.setModalVisible();
+      this.props.setModalVisible1();
+    }, 1000);
   }
 
   render() {
@@ -24,11 +24,9 @@ export default class QRCodeComponent extends Component {
         <StatusBar backgroundColor={'#4B69A6'} barStyle="light-content" />
         <View style={styles.crossButtonStyle}>
           <TouchableOpacity onPress={this.props.setModalVisible}>
-            <Icon
-              name="times"
-              size={25}
-              color={WHITE}
-              style={{paddingLeft: 20}}
+            <Image
+              source={require('../icons/crossWhite.png')}
+              style={{height: 25, width: 25, marginLeft: 10}}
             />
           </TouchableOpacity>
         </View>
@@ -46,7 +44,7 @@ export default class QRCodeComponent extends Component {
           <Image
             resizeMode="stretch"
             source={require('../Logo/QR.jpg')}
-            style={{height: 200, width: '80%'}}
+            style={{height: 250, width: '80%'}}
           />
         </View>
         <View style={{flex: 1}} />
@@ -62,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageViewStyle: {
-    height: 220,
+    height: 250,
     width: '80%',
     alignSelf: 'center',
     justifyContent: 'center',

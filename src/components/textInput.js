@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
@@ -25,11 +26,17 @@ export default class CustomTextInput extends Component {
             false
           ) : (
             <View style={{width: 25}}>
-              <Icon name={this.props.iconName} size={25} color={WHITE} />
+              <Image
+                source={this.props.source}
+                style={{height: 20, width: 20}}
+              />
             </View>
           )}
           <View style={{flex: 1}}>
             <TextInput
+              onSubmitEditing={
+                this.props.onSubmitEditing ? this.props.onSubmitEditing : false
+              }
               style={[
                 styles.textInputStyle,
                 {
@@ -38,7 +45,7 @@ export default class CustomTextInput extends Component {
                     : 50,
                   fontWeight: this.props.fontWeight
                     ? this.props.fontWeight
-                    : '0',
+                    : '10',
                   color: this.props.textColor
                     ? this.props.textColor
                     : LIGHT_BlUE,
@@ -58,7 +65,7 @@ export default class CustomTextInput extends Component {
               <TouchableOpacity onPress={this.props.onEyePress}>
                 <Icon
                   name={this.props.eyeIcon}
-                  size={25}
+                  size={20}
                   color={this.props.iconColor ? this.props.iconColor : WHITE}
                 />
               </TouchableOpacity>

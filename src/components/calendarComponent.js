@@ -1,45 +1,89 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {Calendar} from 'react-native-calendars';
+import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import CustomButton from './customButton';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {LIGHT_BlUE, DARK_BlUE, WHITE} from '../theme/colors';
+import CalendarPicker from 'react-native-calendar-picker';
+import {LIGHT_BlUE, WHITE} from '../theme/colors';
 import {EXTRA_LARGE, LARGE, SMALL} from '../theme/font';
 export default class CalendarComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedStartDate: null,
+      selectedEndDate: null,
+    };
+    this.onDateChange = this.onDateChange.bind(this);
+  }
+
+  onDateChange(date, type) {
+    if (type === 'END_DATE') {
+      this.setState({
+        selectedEndDate: date,
+      });
+    } else {
+      this.setState({
+        selectedStartDate: date,
+        selectedEndDate: null,
+      });
+    }
+  }
   render() {
+    const {selectedStartDate, selectedEndDate} = this.state;
+    const minDate = new Date(); // Today
+    const maxDate = new Date(2050, 6, 3);
+    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+    const endDate = selectedEndDate ? selectedEndDate.toString() : '';
     return (
       <View style={styles.container}>
         <View style={styles.crossButtonStyle}>
           <TouchableOpacity onPress={this.props.setModalVisible}>
-            <Icon
+            {/* <Icon
               name="times"
               size={25}
               color={'black'}
               style={{paddingLeft: 17}}
+            /> */}
+            <Image
+              source={require('../icons/crossBlack.png')}
+              style={{height: 25, width: 25, marginLeft: 10}}
             />
           </TouchableOpacity>
         </View>
         <View style={[styles.crossButtonStyle, {height: 50}]}>
           <Text style={styles.whenTextStyle}>When?</Text>
         </View>
-        <Calendar
-          markedDates={{
-            '2012-05-20': {textColor: 'orange'},
-            '2012-05-22': {startingDay: true, color: 'green'},
-            '2012-05-23': {
-              selected: true,
-              endingDay: true,
-              color: 'green',
-              textColor: 'gray',
-            },
-            '2012-05-04': {
-              disabled: true,
-              startingDay: true,
-              color: 'green',
-              endingDay: true,
-            },
+        <CalendarPicker
+          startFromMonday={true}
+          allowRangeSelection={true}
+          minDate={minDate}
+          maxDate={maxDate}
+          weekdays={['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun']}
+          months={[
+            'January',
+            'Febrauary',
+            'March',
+            'April',
+            'May',
+            'Jun',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'Dcember',
+          ]}
+          previousTitle="Back"
+          nextTitle="Next"
+          enableSwipe={true}
+          todayBackgroundColor={LIGHT_BlUE}
+          selectedDayColor={LIGHT_BlUE}
+          selectedDayTextColor={'white'}
+          disabledDatesTextStyle={'red'}
+          scaleFactor={375}
+          textStyle={{
+            fontFamily: 'Cochin',
+            color: LIGHT_BlUE,
           }}
-          markingType={'multi-dot'}
+          onDateChange={this.onDateChange}
         />
         <View
           style={{
@@ -66,7 +110,7 @@ export default class CalendarComponent extends Component {
           <View style={styles.flexInnerStyle}>
             <View style={styles.viewStyle}>
               <Text
-                style={{color: LIGHT_BlUE, fontSize: SMALL, paddingLeft: 5}}>
+                style={{color: LIGHT_BlUE, fontSize: LARGE, paddingLeft: 5}}>
                 14:30
               </Text>
             </View>
@@ -74,7 +118,7 @@ export default class CalendarComponent extends Component {
           <View style={{flex: 0.3}} />
           <View style={[styles.flexInnerStyle, {alignItems: 'flex-start'}]}>
             <View style={styles.viewStyle}>
-              <Text style={{color: LIGHT_BlUE, fontSize: SMALL}}>18:30</Text>
+              <Text style={{color: LIGHT_BlUE, fontSize: LARGE}}>18:30</Text>
             </View>
           </View>
           <View style={{flex: 1}} />

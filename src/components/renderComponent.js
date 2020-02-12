@@ -109,8 +109,14 @@ class RenderComponent extends Component {
               btnTextColor={WHITE}
             />
 
-            <View style={{height: 10}} />
+            <View style={{height: 20}} />
           </View>
+
+          <Image
+            source={require('../icons/curl.jpeg')}
+            style={{height: 10, width: '90%', alignSelf: 'center'}}
+          />
+          <View style={{height: 30}} />
         </ScrollView>
       </React.Fragment>
     );

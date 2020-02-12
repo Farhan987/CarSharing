@@ -10,7 +10,7 @@ class FazerReservaScreen extends Component {
   render() {
     return (
       <ImageBackground
-        source={require('../Logo/CarSharingSplash.png')}
+        source={require('../icons/image.jpeg')}
         style={styles.container}>
         <CustomHeader
           onPressMenu={() => this.props.navigation.toggleDrawer()}

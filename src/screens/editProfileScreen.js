@@ -50,7 +50,11 @@ class EditProfileScreen extends Component {
                 source={require('../Logo/profile.jpg')}
               />
               <TouchableOpacity style={styles.editImageButtonStyle}>
-                <Icon name="pencil" size={20} color={WHITE} />
+                {/* <Icon name="pencil" size={20} color={WHITE} /> */}
+                <Image
+                  source={require('../icons/editWhite.png')}
+                  style={{height: 20, width: 20}}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -89,6 +93,7 @@ class EditProfileScreen extends Component {
           />
           <View style={{height: 30}} />
           <CustomButton
+            onPress={() => this.props.navigation.navigate('FazerReservaScreen')}
             buttonWidth={'60%'}
             buttonText={'To Save'}
             btnBackgroundColor={LIGHT_BlUE}

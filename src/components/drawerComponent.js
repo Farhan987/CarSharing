@@ -13,9 +13,12 @@ export default class DrawerComponent extends Component {
           onPress={this.props.onPressDrawerComponent}>
           <View style={styles.flexStyle}>
             {this.props.showImage ? (
-              <Image source={this.props.imagePath} />
+              <Image
+                source={this.props.source}
+                style={{height: 20, width: 21}}
+              />
             ) : (
-              <Icon name={this.props.iconName} size={25} color={LIGHT_BlUE} />
+              false
             )}
           </View>
           <View style={[styles.flexStyle, {flex: 4, alignItems: 'flex-start'}]}>

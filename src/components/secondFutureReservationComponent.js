@@ -8,6 +8,7 @@ import {
   ScrollView,
   Modal,
   Alert,
+  ImageBackground,
 } from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,8 +16,8 @@ import {LARGE, SMALL} from '../theme/font';
 import CheckInRealizedModal from '../components/modalComponents/checkInRealizedComponent';
 import CheckInCanceledModal from '../components/modalComponents/checkInCanceledComponent';
 class SecondFutureReservationComponent extends Component {
-  state = {blueBg: false, modalVisible: false, modal: true};
-  toggleCheckBox = () => {
+  state = {blueBg: true, modalVisible: false, modal: true};
+  toggleBgColor = () => {
     this.setState({blueBg: !this.state.blueBg});
   };
   toggleModal = text => {
@@ -46,7 +47,11 @@ class SecondFutureReservationComponent extends Component {
               backgroundColor: LIGHT_BlUE,
             }}
           />
-          <View style={styles.otherViewStyle}>
+          <View
+            style={[
+              styles.otherViewStyle,
+              {height: this.state.blueBg ? 350 : 430},
+            ]}>
             <View style={{flexDirection: 'row', flex: 1}}>
               <View style={styles.flexInnerViewStyle}>
                 <Text
@@ -133,14 +138,16 @@ class SecondFutureReservationComponent extends Component {
               <View style={styles.checboxOuterViewStyle}>
                 <View style={styles.mainCheckViewStyle}>
                   <View style={[styles.checkViewStyle, {flex: 1}]}>
-                    <View style={styles.boxStyle}>
-                      <Icon
-                        name="check"
-                        size={15}
-                        color={LIGHT_BlUE}
-                        style={{backgroundColor: LIGHT_BlUE}}
-                      />
-                    </View>
+                    <TouchableOpacity
+                      style={[
+                        styles.boxStyle,
+                        {
+                          backgroundColor: this.state.blueBg
+                            ? LIGHT_BlUE
+                            : WHITE,
+                        },
+                      ]}
+                      onPress={() => this.toggleBgColor()}></TouchableOpacity>
                   </View>
                   <View style={styles.checkViewStyle}>
                     <Text
@@ -157,39 +164,120 @@ class SecondFutureReservationComponent extends Component {
                 <View style={styles.mainCheckViewStyle}>
                   <View style={[styles.checkViewStyle, {flex: 1}]}>
                     <TouchableOpacity
-                      style={styles.boxStyle}
-                      onPress={() => {
-                        this.toggleCheckBox();
-                        this.props.navigation.navigate(
-                          'MyReservationThirdScreen',
-                        );
-                      }}>
-                      <Icon
+                      style={[
+                        styles.boxStyle,
+                        {
+                          backgroundColor: this.state.blueBg
+                            ? WHITE
+                            : LIGHT_BlUE,
+                        },
+                      ]}
+                      onPress={() => this.toggleBgColor()}>
+                      {/* <Icon
                         name="check"
                         size={15}
                         color={this.state.blueBg ? LIGHT_BlUE : WHITE}
-                      />
+                      /> */}
                     </TouchableOpacity>
                   </View>
                   <View style={styles.checkViewStyle}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate(
-                          'MyReservationThirdScreen',
-                        )
-                      }>
-                      <Text
-                        style={{
-                          fontSize: SMALL,
-                          color: LIGHT_BlUE,
-                        }}>
-                        Malfunctioning Car
-                      </Text>
-                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        fontSize: SMALL,
+                        color: LIGHT_BlUE,
+                      }}>
+                      Malfunctioning Car
+                    </Text>
                   </View>
                 </View>
               </View>
             </View>
+
+            {/* imagePicker */}
+            {this.state.blueBg ? (
+              false
+            ) : (
+              <React.Fragment>
+                <View
+                  style={{
+                    height: 50,
+                    width: '90%',
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                  }}>
+                  <View style={styles.flexeStyle}>
+                    <TouchableOpacity>
+                      <ImageBackground
+                        source={require('../icons/square.png')}
+                        style={styles.imageBgStyle}>
+                        <Image
+                          source={require('../icons/plus.png')}
+                          style={{height: 20, width: 20}}
+                        />
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.flexeStyle}>
+                    <TouchableOpacity>
+                      <ImageBackground
+                        source={require('../icons/square.png')}
+                        style={styles.imageBgStyle}>
+                        <Image
+                          source={require('../icons/plus.png')}
+                          style={{height: 20, width: 20}}
+                        />
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.flexeStyle}>
+                    <TouchableOpacity>
+                      <ImageBackground
+                        source={require('../icons/square.png')}
+                        style={styles.imageBgStyle}>
+                        <Image
+                          source={require('../icons/plus.png')}
+                          style={{height: 20, width: 20}}
+                        />
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={{height: 10}} />
+                <View
+                  style={{
+                    height: 50,
+                    width: '90%',
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                  }}>
+                  <View style={styles.flexeStyle}>
+                    <TouchableOpacity>
+                      <ImageBackground
+                        source={require('../icons/square.png')}
+                        style={styles.imageBgStyle}>
+                        <Image
+                          source={require('../icons/plus.png')}
+                          style={{height: 20, width: 20}}
+                        />
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.flexeStyle}>
+                    <TouchableOpacity>
+                      <ImageBackground
+                        source={require('../icons/square.png')}
+                        style={styles.imageBgStyle}>
+                        <Image
+                          source={require('../icons/plus.png')}
+                          style={{height: 20, width: 20}}
+                        />
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{flex: 1}} />
+                </View>
+              </React.Fragment>
+            )}
 
             {/* button */}
             <View style={{height: 10}} />
@@ -222,19 +310,21 @@ class SecondFutureReservationComponent extends Component {
               </View>
             </View>
 
-            <View style={{height: 10}} />
+            <View style={{height: 20}} />
           </View>
-          <View style={{height: 25}} />
+          <Image
+            source={require('../icons/curl.jpeg')}
+            style={{height: 10, width: '90%', alignSelf: 'center'}}
+          />
+          <View style={{height: 30}} />
         </ScrollView>
 
         <Modal
           animationType="slide"
-          transparent={false}
+          transparent={true}
           presentationStyle="fullScreen"
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
+          onRequestClose={() => this.setModalVisible()}>
           {this.state.modal ? (
             <CheckInRealizedModal
               setModalVisible={() => this.setModalVisible()}
@@ -270,7 +360,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
   },
   otherViewStyle: {
-    height: 350,
+    height: 430,
     width: '90%',
     alignSelf: 'center',
     opacity: 2,
@@ -326,6 +416,18 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 3,
     backgroundColor: LIGHT_BlUE,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flexeStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  imageBgStyle: {
+    height: 50,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },

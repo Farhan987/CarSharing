@@ -12,7 +12,7 @@ import {
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import CustomButton from './customButton';
 import {LARGE, SMALL} from '../theme/font';
-import QRCodeComponent from './QRcodeComponent';
+import QRCodeComponent from './secondQRCodeComponent';
 class FirstFutureReservationComponent extends Component {
   state = {modalVisible: false};
 
@@ -152,8 +152,13 @@ class FirstFutureReservationComponent extends Component {
               </Text>
               <Text style={{color: LIGHT_BlUE}}>to the vehicle release.</Text>
             </View>
-            <View style={{height: 10}} />
+            <View style={{height: 20}} />
           </View>
+          <Image
+            source={require('../icons/curl.jpeg')}
+            style={{height: 10, width: '90%', alignSelf: 'center'}}
+          />
+          <View style={{height: 30}} />
           <Modal
             animationType="slide"
             transparent={false}

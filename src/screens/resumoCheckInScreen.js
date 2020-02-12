@@ -7,7 +7,6 @@ import {
   Image,
   ScrollView,
   Modal,
-  Alert,
 } from 'react-native';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import CustomButton from '../components/customButton';
@@ -16,11 +15,13 @@ import {SMALL, EXTRA_LARGE, LARGE} from '../theme/font';
 import CustomHeader from '../components/customHeader';
 import TermOfUseComponent from '../components/termOfUseComponent';
 import ConfirmacaoReservaModal from '../components/modalComponents/confirmacaoReservaComponent';
+
 class ResumoCheckinScreen extends Component {
   state = {
     modalVisible: false,
     modal: true,
     blueBg: false,
+    modalVisible1: false,
   };
   toggleModal = text => {
     this.setState({modal: text});
@@ -29,7 +30,9 @@ class ResumoCheckinScreen extends Component {
   setModalVisible() {
     this.setState({modalVisible: !this.state.modalVisible});
   }
-
+  setModalVisible1() {
+    this.setState({modalVisible1: !this.state.modalVisible1});
+  }
   toggleCheckBox = () => {
     this.setState({blueBg: !this.state.blueBg});
   };
@@ -48,7 +51,10 @@ class ResumoCheckinScreen extends Component {
         <View style={styles.outterViewStyle}>
           <View style={styles.flexInnerStyle}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-              <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+              <Image
+                source={require('../icons/blueBack.png')}
+                style={{height: 20, width: 20}}
+              />
             </TouchableOpacity>
           </View>
           <View
@@ -151,8 +157,11 @@ class ResumoCheckinScreen extends Component {
               <View style={{flex: 1}}></View>
             </View>
           </View>
-
-          <View style={{height: 20}} />
+          <Image
+            source={require('../icons/curl.jpeg')}
+            style={{height: 10, width: '90%', alignSelf: 'center'}}
+          />
+          <View style={{height: 30}} />
           <CustomButton
             onPress={() => {
               this.toggleModal(false);
@@ -163,19 +172,6 @@ class ResumoCheckinScreen extends Component {
             btnBackgroundColor={LIGHT_BlUE}
             btnTextColor={WHITE}
           />
-          {/* <View
-            style={{
-              height: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity
-             >
-              <Text style={{fontSize: SMALL, color: LIGHT_BlUE}}>
-                I accept the term of use
-              </Text>
-            </TouchableOpacity>
-          </View> */}
 
           <View style={styles.mainCheckViewStyle}>
             <View
@@ -187,7 +183,7 @@ class ResumoCheckinScreen extends Component {
                 style={styles.boxStyle}
                 onPress={() => {
                   this.toggleCheckBox();
-                  this.setModalVisible(true);
+                  this.setModalVisible1();
                   this.toggleModal(true);
                 }}>
                 <Icon
@@ -198,11 +194,7 @@ class ResumoCheckinScreen extends Component {
               </TouchableOpacity>
             </View>
             <View style={styles.checkViewStyle}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.setModalVisible(true);
-                  this.toggleModal(true);
-                }}>
+              <View>
                 <Text
                   style={{
                     fontSize: SMALL,
@@ -211,29 +203,34 @@ class ResumoCheckinScreen extends Component {
                   }}>
                   I accept the term of use
                 </Text>
-              </TouchableOpacity>
+              </View>
             </View>
           </View>
           <View style={{height: 10}} />
-
           <Modal
             animationType="slide"
-            transparent={false}
-            presentationStyle="fullScreen"
+            visible={this.state.modalVisible1}
+            onRequestClose={() => {
+              this.setModalVisible1();
+            }}>
+            <TermOfUseComponent
+              setModalVisible1={() => {
+                this.setModalVisible1();
+                this.setModalVisible();
+              }}
+            />
+          </Modal>
+          <Modal
+            animationType="fade"
+            transparent={true}
             visible={this.state.modalVisible}
             onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
+              this.setModalVisible();
             }}>
-            {this.state.modal ? (
-              <TermOfUseComponent
-                setModalVisible={() => this.setModalVisible()}
-              />
-            ) : (
-              <ConfirmacaoReservaModal
-                setModalVisible={() => this.setModalVisible()}
-                navigation={this.props.navigation}
-              />
-            )}
+            <ConfirmacaoReservaModal
+              setModalVisible={() => this.setModalVisible()}
+              navigation={this.props.navigation}
+            />
           </Modal>
         </ScrollView>
       </View>

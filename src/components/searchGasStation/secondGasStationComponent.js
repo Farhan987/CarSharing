@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {WHITE, LIGHT_BlUE} from '../../theme/colors';
 
 export default class SecondGasStationComponent extends Component {
@@ -11,7 +10,10 @@ export default class SecondGasStationComponent extends Component {
           <View style={styles.firstSubFlexStyle}>
             <View style={styles.flexInnerStyle}>
               <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+                <Image
+                  source={require('../../icons/blueBack.png')}
+                  style={{height: 20, width: 20}}
+                />
               </TouchableOpacity>
             </View>
             <View
@@ -32,8 +34,8 @@ export default class SecondGasStationComponent extends Component {
             }}>
             <View style={{height: 5}} />
             <Image
-              source={require('../../icons/gas-pump.png')}
-              style={{marginLeft: 20}}
+              source={require('../../icons/fuelPump.png')}
+              style={{marginLeft: 20, height: 20, width: 21}}
             />
             {/* <Icon
               name={'fire'}

@@ -5,21 +5,30 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  ToucableOpacity,
   ScrollView,
   TextInput,
+  Modal,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomHeader from '../components/customHeader';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {AirbnbRating} from 'react-native-ratings';
 import {WHITE, LIGHT_BlUE} from '../theme/colors';
 import CustomButton from '../components/customButton';
 import {EXTRA_LARGE} from '../theme/font';
+import CarDownModall from '../components/modalComponents/checkOutRealizedComponent';
+import QRCodeModal from '../components/QRcodeComponent';
 class EstrelasScreen extends Component {
-  state = {toggleTextInput: false};
+  state = {toggleTextInput: false, modalVisible: false, modalVisible1: false};
   toggleTextInputfun = () => {
     this.setState({toggleTextInput: !this.state.toggleTextInput});
   };
+
+  setModalVisible() {
+    this.setState({modalVisible: !this.state.modalVisible});
+  }
+  setModalVisible1() {
+    this.setState({modalVisible1: !this.state.modalVisible1});
+  }
+
   render() {
     return (
       <ScrollView>
@@ -35,7 +44,10 @@ class EstrelasScreen extends Component {
           <View style={styles.outterViewStyle}>
             <View style={styles.flexInnerStyle}>
               <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                <Icon name="long-arrow-left" size={20} color={LIGHT_BlUE} />
+                <Image
+                  source={require('../icons/blueBack.png')}
+                  style={{height: 20, width: 20}}
+                />
               </TouchableOpacity>
             </View>
             <View
@@ -56,7 +68,7 @@ class EstrelasScreen extends Component {
           <View style={{height: 10}} />
           <View style={styles.upperTextViewStyle}>
             <Text style={styles.upperTextStyle}>
-              Qual a probabilidade de  você recomendar o Car Sharing para um(a)
+              Qual a probabilidade de você recomendar o Car Sharing para um(a)
               colega de trabalho?
             </Text>
           </View>
@@ -66,7 +78,14 @@ class EstrelasScreen extends Component {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <AirbnbRating size={25} showRating={false} count={5} />
+            <AirbnbRating
+              selectedColor={LIGHT_BlUE}
+              ratingBackgroundColor="green"
+              size={25}
+              showRating={false}
+              count={5}
+              starStyle={{color: 'red'}}
+            />
           </View>
           <View style={styles.lowerTextViewStyle}>
             <Text style={styles.lowerTextStyle}>
@@ -130,10 +149,16 @@ class EstrelasScreen extends Component {
             </View>
           </View>
           {this.state.toggleTextInput ? (
-            <View style={{height: 50}}>
+            <View style={{height: 100, width: '90%', marginTop: 10}}>
               <TextInput
+                multiline={true}
+                numberOfLines={4}
                 placeholder="Observações à respeito da reserva"
-                style={{elevation: 1, width: '90%'}}
+                style={{
+                  elevation: 1,
+                  width: '100%',
+                  backgroundColor: WHITE,
+                }}
               />
             </View>
           ) : (
@@ -141,13 +166,36 @@ class EstrelasScreen extends Component {
           )}
           <View style={{height: 10}} />
           <CustomButton
-            onPress={() => this.setModalVisible(true)}
+            onPress={() => this.setModalVisible1()}
             buttonWidth={'60%'}
             buttonText={'Salvar'}
             btnBackgroundColor={LIGHT_BlUE}
             btnTextColor={WHITE}
           />
+          <View style={{height: 10}} />
         </View>
+
+        <Modal
+          animationType="fade"
+          transparent={true}
+          presentationStyle="fullScreen"
+          visible={this.state.modalVisible}
+          onRequestClose={() => this.setModalVisible()}>
+          <CarDownModall
+            setModalVisible={() => this.setModalVisible()}
+            navigation={this.props.navigation}
+          />
+        </Modal>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.modalVisible1}
+          onRequestClose={() => this.setModalVisible1()}>
+          <QRCodeModal
+            setModalVisible={() => this.setModalVisible()}
+            setModalVisible1={() => this.setModalVisible1()}
+          />
+        </Modal>
       </ScrollView>
     );
   }
@@ -209,7 +257,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 24,
-    width: 140,
+    width: 160,
   },
   buttonViewInnerStyle: {
     flex: 1,
