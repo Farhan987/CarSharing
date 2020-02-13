@@ -47,8 +47,8 @@ class LoginScreen extends Component {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
   }
-  _keyboardDidShow = () => {
-    let to = Dimensions.get('window').height / 2 - 300;
+  _keyboardDidShow = e => {
+    let to = Dimensions.get('window').height / +(e.endCoordinates.height - 5);
 
     Animated.parallel([
       Animated.timing(this.state.topImageOffset, {
